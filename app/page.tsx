@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 
 interface GristRecord {
   id: number;
-  fields: Record<string, any>;
+  fields: {
+    [key: string]: any; // Permet d'accepter n'importe quelle clé
+  };
 }
+
 
 export default function Home() {
   const [data, setData] = useState<GristRecord[]>([]);
