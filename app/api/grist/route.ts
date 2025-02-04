@@ -28,8 +28,12 @@ export async function GET() {
   
       const data = await res.json();
       return Response.json(data, { status: 200 });
-    } catch (error: any) {
-      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    } catch (error) {
+        if (error instanceof Error) {
+            return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+        }
+        return new Response(JSON.stringify({ error: "Unknown error" }), { status: 500 });
     }
+    
   }
   

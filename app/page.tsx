@@ -21,8 +21,12 @@ export default function Home() {
         }
         const json = await res.json();
         setData(json.records);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Une erreur inconnue s'est produite");
+        }
       } finally {
         setLoading(false);
       }
